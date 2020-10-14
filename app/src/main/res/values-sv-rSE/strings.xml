@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="play_match">Spela</string>
+    <string name="settings">Inställningar</string>
+    <string name="exit_game">Avsluta</string>
+    <string name="guesses_left_text">"Gissningar kvar: "</string>
+    <string name="letters_guessed_text">"Gissade bokstäver: "</string>
+    <string name="already_guessed">Du har redan gissat på den bokstaven!</string>
+    <string name="letter_not_exist">Den bokstaven finns inte med i ordet!</string>
+    <string name="you_win">DU VANN!</string>
+    <string name="you_lose">DU FÖRLORADE!</string>
+    <string name="tries_left">"Försök kvar: "</string>
+    <string name="letters_guessed">"Gissade bokstäver: "</string>
+    <string name="the_word_was">"Ordet var: "</string>
+    <string name="number_of_guesses">Antal gissningar</string>
+    <string name="summary">Sammanfattning:</string>
+    <string name="play_again">Spela Igen</string>
+
+    <string-array name="language_list_en">
+        <item>Engelska</item>
+        <item>Svenska</item>
+    </string-array>
+
+    <string-array name="words_en">
+        <item>BÅT</item>
+        <item>LEKSAKER</item>
+        <item>STJÄRNA</item>
+        <item>MOLN</item>
+        <item>TOALETT</item>
+        <item>BIL</item>
+        <item>FÖRSÄLJARE</item>
+        <item>VAKTMÄSTARE</item>
+        <item>BADRUM</item>
+        <item>DATOR</item>
+    </string-array>
+
+
+</resources>

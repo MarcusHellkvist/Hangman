@@ -41,18 +41,19 @@ public class EndActivity extends AppCompatActivity {
         // GET DATA FROM PLAYACTIVITY
         Intent intent = getIntent();
         String mainText = intent.getStringExtra(PlayActivity.SCORETEXT_KEY);
+        int winState = intent.getIntExtra(PlayActivity.WINSTATE_KEY, 0);
         String wordText = intent.getStringExtra(PlayActivity.WORD_KEY);
         int guessText = intent.getIntExtra(PlayActivity.GUESSES_KEY, 0);
 
-        if (mainText.contains("YOU WIN!")){
+        if (winState == 1){
             playWinState();
         }
         
         // SET TEXT
         tvEndText.setText(mainText);
-        String wordTextString = "The word was: " + wordText;
+        String wordTextString = getString(R.string.the_word_was) + wordText;
         tvCorrectWord.setText(wordTextString);
-        String guessTextString = "Number of guesses: " + guessText;
+        String guessTextString = getString(R.string.number_of_guesses) + guessText;
         tvAmountOfGuesses.setText(guessTextString);
     }
 

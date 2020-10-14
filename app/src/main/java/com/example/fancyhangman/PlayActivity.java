@@ -23,6 +23,7 @@ public class PlayActivity extends AppCompatActivity {
     public static final String SCORETEXT_KEY = "SCORETEXT_KEY";
     public static final String WORD_KEY = "WORD_KEY";
     public static final String GUESSES_KEY = "GUESSES_KEY";
+    public static final String WINSTATE_KEY = "WINSTATE_KEY";
 
     private TextView tvHiddenWord;
     private TextView tvTriesLeft;
@@ -59,10 +60,10 @@ public class PlayActivity extends AppCompatActivity {
     private void updateAllText() {
         String s = new String(hiddenWord);
         tvHiddenWord.setText(s);
-        String triesleft = "Guesses left: " + (MAX_GUESSES - currentGuess);
-        tvTriesLeft.setText(triesleft);
-        String lettersGuessed = "Letters guessed: " + guessedLetters;
-        tvGuessedLetters.setText(lettersGuessed);
+        String triesLeft = getString(R.string.guesses_left_text);
+        tvTriesLeft.setText(triesLeft + (MAX_GUESSES - currentGuess));
+        String lettersGuessed = getString(R.string.letters_guessed_text);
+        tvGuessedLetters.setText(lettersGuessed + guessedLetters);
     }
 
     private void hideWord (String wordToHide){
@@ -104,7 +105,7 @@ public class PlayActivity extends AppCompatActivity {
 
         //CHECK IF LETTER HAS BEEN GUESSED BEFORE
         if (guessedLetters.contains(letter)){
-            Toast.makeText(this, "You have already guessed that letter!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.already_guessed, Toast.LENGTH_SHORT).show();
             currentGuess++;
         } else {
 
@@ -118,7 +119,7 @@ public class PlayActivity extends AppCompatActivity {
                     index = currentWord.indexOf(letter, index + 1);
                 }
             } else {
-                Toast.makeText(this, "That letter does not exist!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.letter_not_exist, Toast.LENGTH_SHORT).show();
                 guessedLetters.add(letter);
                 currentGuess++;
                 // TODO update images
@@ -129,14 +130,16 @@ public class PlayActivity extends AppCompatActivity {
 
         if (checkWin()){
             Intent intent = new Intent(this, EndActivity.class);
-            intent.putExtra(SCORETEXT_KEY, "YOU WIN!");
+            intent.putExtra(WINSTATE_KEY, 1);
+            intent.putExtra(SCORETEXT_KEY, getString(R.string.you_win));
             intent.putExtra(WORD_KEY, currentWord);
             intent.putExtra(GUESSES_KEY, currentGuess);
             startActivity(intent);
             finish();
         } else if (currentGuess >= 10){
             Intent intent = new Intent(this, EndActivity.class);
-            intent.putExtra(SCORETEXT_KEY, "YOU LOSE!");
+            intent.putExtra(WINSTATE_KEY, 2);
+            intent.putExtra(SCORETEXT_KEY, getString(R.string.you_lose));
             intent.putExtra(WORD_KEY, currentWord);
             intent.putExtra(GUESSES_KEY, currentGuess);
             startActivity(intent);

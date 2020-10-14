@@ -1,5 +1,20 @@
 <resources>
-    <string name="app_name">FancyHangman</string>
+    <string name="app_name" translatable="false">FancyHangman</string>
+    <string name="play_match">Play Match</string>
+    <string name="settings">Settings</string>
+    <string name="exit_game">Exit Game</string>
+    <string name="guesses_left_text">Guesses left: </string>
+    <string name="letters_guessed_text">Letters guessed: </string>
+    <string name="already_guessed">You have already guessed that letter!</string>
+    <string name="letter_not_exist">That letter does not exist!</string>
+    <string name="you_win">YOU WIN!</string>
+    <string name="you_lose">YOU LOSE!</string>
+    <string name="tries_left">Tries Left: </string>
+    <string name="letters_guessed">Letters guessed: </string>
+    <string name="the_word_was">The word was: </string>
+    <string name="number_of_guesses">Number of guesses: </string>
+    <string name="summary">Summary:</string>
+    <string name="play_again">Play Again</string>
 
     <string-array name="language_list_en">
         <item>English</item>
