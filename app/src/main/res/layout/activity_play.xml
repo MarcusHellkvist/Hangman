@@ -409,16 +409,61 @@
         android:textColor="@color/colorWhite"
         android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="@+id/btn_x"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_å"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btn_y" />
+
+    <Button
+        android:id="@+id/btn_å"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/btnactive"
+        android:fontFamily="@font/bebasneue_regular"
+        android:onClick="guessLetter"
+        android:text="Å"
+        android:textColor="@color/colorWhite"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_x"
+        app:layout_constraintEnd_toStartOf="@+id/btn_ä"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_z" />
+
+    <Button
+        android:id="@+id/btn_ä"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/btnactive"
+        android:fontFamily="@font/bebasneue_regular"
+        android:onClick="guessLetter"
+        android:text="Ä"
+        android:textColor="@color/colorWhite"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_x"
+        app:layout_constraintEnd_toStartOf="@+id/btn_ö"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_å" />
+
+    <Button
+        android:id="@+id/btn_ö"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/btnactive"
+        android:fontFamily="@font/bebasneue_regular"
+        android:onClick="guessLetter"
+        android:text="Ö"
+        android:textColor="@color/colorWhite"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_x"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_ä" />
 
     <TextView
         android:id="@+id/tv_triesLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/opensans_regular"
         android:text="@string/tries_left"
         android:textColor="@color/colorWhite"

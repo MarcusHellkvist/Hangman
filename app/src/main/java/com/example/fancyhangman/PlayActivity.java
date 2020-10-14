@@ -8,6 +8,7 @@ import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Random;
 
 public class PlayActivity extends AppCompatActivity {
@@ -33,6 +35,10 @@ public class PlayActivity extends AppCompatActivity {
 
     private int currentGuess = 0;
 
+    private Button btnÅ;
+    private Button btnÄ;
+    private Button btnÖ;
+
     private String[] words;
     private String currentWord;
     private char[] hiddenWord;
@@ -49,6 +55,19 @@ public class PlayActivity extends AppCompatActivity {
         tvHiddenWord = findViewById(R.id.tv_hidden_word);
         tvTriesLeft = findViewById(R.id.tv_triesLeft);
         tvGuessedLetters = findViewById(R.id.tv_guessedLetters);
+        btnÅ = findViewById(R.id.btn_å);
+        btnÄ = findViewById(R.id.btn_ä);
+        btnÖ = findViewById(R.id.btn_ö);
+
+        String currentLanguage = Locale.getDefault().getDisplayLanguage();
+        Log.d(TAG, "onCreate: " + currentLanguage);
+
+        if (currentLanguage.contentEquals("English")){
+            btnÅ.setVisibility(View.INVISIBLE);
+            btnÄ.setVisibility(View.INVISIBLE);
+            btnÖ.setVisibility(View.INVISIBLE);
+        }
+
 
         // FIND, HIDE, AND SHOW A RANDOM WORD
         words = getResources().getStringArray(R.array.words);
