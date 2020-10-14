@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +24,9 @@ public class EndActivity extends AppCompatActivity {
     private LottieAnimationView trophy;
     private LottieAnimationView confetti;
 
-    MediaPlayer mediaPlayer;
+    private Button btnPlayAgain;
+
+    private MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +41,7 @@ public class EndActivity extends AppCompatActivity {
         tvAmountOfGuesses = findViewById(R.id.tv_amount_of_guesses);
         trophy = findViewById(R.id.animation_view_trophy);
         confetti = findViewById(R.id.animation_view_confetti_falling);
+        btnPlayAgain = findViewById(R.id.btn_menu_play);
 
         // GET DATA FROM PLAYACTIVITY
         Intent intent = getIntent();
@@ -44,6 +49,8 @@ public class EndActivity extends AppCompatActivity {
         int winState = intent.getIntExtra(PlayActivity.WINSTATE_KEY, 0);
         String wordText = intent.getStringExtra(PlayActivity.WORD_KEY);
         int guessText = intent.getIntExtra(PlayActivity.GUESSES_KEY, 0);
+
+        btnPlayAgain.setOnClickListener(playAgain);
 
         if (winState == 1){
             playWinState();
@@ -56,6 +63,15 @@ public class EndActivity extends AppCompatActivity {
         String guessTextString = getString(R.string.number_of_guesses) + guessText;
         tvAmountOfGuesses.setText(guessTextString);
     }
+
+    View.OnClickListener playAgain = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(EndActivity.this, PlayActivity.class);
+            startActivity(intent);
+            finish();
+        }
+    };
 
     public void playWinState(){
         mediaPlayer.start();
@@ -76,10 +92,12 @@ public class EndActivity extends AppCompatActivity {
             case R.id.ac_play_icon:
                 Intent intent = new Intent(EndActivity.this, PlayActivity.class);
                 startActivity(intent);
+                finish();
                 break;
             case R.id.ac_info_icon:
                 Intent intent1 = new Intent(this, SettingsActivity.class);
                 startActivity(intent1);
+                finish();
         }
         return super.onOptionsItemSelected(item);
     }

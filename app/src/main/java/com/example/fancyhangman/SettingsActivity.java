@@ -16,9 +16,6 @@ public class SettingsActivity extends AppCompatActivity {
     Spinner spinnerLanguage;
     Button btnApply;
 
-    Locale locale;
-    Configuration config;
-    Context context;
 
 
     @Override
@@ -26,7 +23,6 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        context = getBaseContext();
 
         // VIEW BINDING
         spinnerLanguage = findViewById(R.id.sp_language);
@@ -37,16 +33,6 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String language = spinnerLanguage.getSelectedItem().toString();
 
-
-
-                Locale locale = new Locale("se_SE");
-                Locale.setDefault(locale);
-                Configuration config = new Configuration();
-                config.locale = locale;
-                context.getResources().updateConfiguration(config,context.getResources().getDisplayMetrics());
-
-                finish();
-                startActivity(getIntent());
 
 
             }
