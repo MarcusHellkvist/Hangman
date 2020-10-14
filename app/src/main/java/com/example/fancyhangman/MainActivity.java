@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         //BIND VIEWS
         btnPlay = findViewById(R.id.btn_menu_play);
         btnAbout = findViewById(R.id.btn_menu_about);
