@@ -15,13 +15,16 @@
     <string name="number_of_guesses">Number of guesses: </string>
     <string name="summary">Summary:</string>
     <string name="play_again">Play Again</string>
+    <string name="programmed_and_designed_by_marcus_hellkvist">Programmed and designed by Marcus Hellkvist</string>
+    <string name="language">Language</string>
+    <string name="apply">Apply</string>
 
-    <string-array name="language_list_en">
+    <string-array name="language_list">
         <item>English</item>
         <item>Swedish</item>
     </string-array>
 
-    <string-array name="words_en">
+    <string-array name="words">
         <item>BOAT</item>
         <item>TOYS</item>
         <item>STAR</item>

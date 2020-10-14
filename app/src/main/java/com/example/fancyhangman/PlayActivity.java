@@ -1,9 +1,11 @@
 package com.example.fancyhangman;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Random;
 
 public class PlayActivity extends AppCompatActivity {
@@ -47,7 +50,7 @@ public class PlayActivity extends AppCompatActivity {
         tvGuessedLetters = findViewById(R.id.tv_guessedLetters);
 
         // FIND, HIDE, AND SHOW A RANDOM WORD
-        words = getResources().getStringArray(R.array.words_en);
+        words = getResources().getStringArray(R.array.words);
         currentWord = getRandomWord(words);
         hideWord(currentWord);
         updateAllText();
