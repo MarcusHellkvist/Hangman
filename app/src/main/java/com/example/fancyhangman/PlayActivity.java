@@ -56,6 +56,12 @@ public class PlayActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //TODO save variables in sharedpreference
+    }
+
     private void updateAllText() {
         String s = new String(hiddenWord);
         tvHiddenWord.setText(s);
