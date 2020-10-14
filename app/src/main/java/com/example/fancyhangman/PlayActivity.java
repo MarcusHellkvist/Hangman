@@ -56,17 +56,13 @@ public class PlayActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        //TODO save variables in sharedpreference
-    }
-
     private void updateAllText() {
         String s = new String(hiddenWord);
         tvHiddenWord.setText(s);
-        tvTriesLeft.setText("Guesses left: " + (MAX_GUESSES - currentGuess));
-        tvGuessedLetters.setText("Letters guessed: " + guessedLetters);
+        String triesleft = "Guesses left: " + (MAX_GUESSES - currentGuess);
+        tvTriesLeft.setText(triesleft);
+        String lettersGuessed = "Letters guessed: " + guessedLetters;
+        tvGuessedLetters.setText(lettersGuessed);
     }
 
     private void hideWord (String wordToHide){
@@ -96,7 +92,8 @@ public class PlayActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.ac_info_icon) {
-            Log.d(TAG, "onOptionsItemSelected: about pressed!");
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -136,12 +133,14 @@ public class PlayActivity extends AppCompatActivity {
             intent.putExtra(WORD_KEY, currentWord);
             intent.putExtra(GUESSES_KEY, currentGuess);
             startActivity(intent);
+            finish();
         } else if (currentGuess >= 10){
             Intent intent = new Intent(this, EndActivity.class);
             intent.putExtra(SCORETEXT_KEY, "YOU LOSE!");
             intent.putExtra(WORD_KEY, currentWord);
             intent.putExtra(GUESSES_KEY, currentGuess);
             startActivity(intent);
+            finish();
         }
 
     }

@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">FancyHangman</string>
 
+    <string-array name="language_list_en">
+        <item>English</item>
+        <item>Swedish</item>
+    </string-array>
+
     <string-array name="words_en">
         <item>BOAT</item>
         <item>TOYS</item>
@@ -12,19 +17,6 @@
         <item>JANITOR</item>
         <item>BATHROOM</item>
         <item>COMPUTER</item>
-    </string-array>
-
-    <string-array name="words_sv">
-        <item>BÅT</item>
-        <item>LEKSAKER</item>
-        <item>STJÄRNA</item>
-        <item>MOLN</item>
-        <item>TOALETT</item>
-        <item>BIL</item>
-        <item>FÖRSÄLJARE</item>
-        <item>VAKTMÄSTARE</item>
-        <item>BADRUM</item>
-        <item>DATOR</item>
     </string-array>
 
 </resources>

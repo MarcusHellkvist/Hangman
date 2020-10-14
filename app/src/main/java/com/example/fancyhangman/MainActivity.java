@@ -48,14 +48,14 @@ public class MainActivity extends AppCompatActivity {
     View.OnClickListener aboutGameListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            //changeActivity(MainActivity.this, PlayActivity.class);
+            changeActivity(MainActivity.this, SettingsActivity.class);
         }
     };
 
     View.OnClickListener exitGameListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            //changeActivity(MainActivity.this, PlayActivity.class);
+            //TODO EXIT GAME
         }
     };
 
@@ -72,11 +72,10 @@ public class MainActivity extends AppCompatActivity {
                 changeActivity(this, PlayActivity.class);
                 break;
             case R.id.ac_info_icon:
-                Log.d(TAG, "onOptionsItemSelected: about pressed!");
+                changeActivity(this, SettingsActivity.class);
         }
         return super.onOptionsItemSelected(item);
     }
-
 
     private void changeActivity(Context context, Class mClass){
         Intent intent = new Intent(context, mClass);
