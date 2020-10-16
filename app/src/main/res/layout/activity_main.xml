@@ -47,7 +47,7 @@
         android:textColor="@color/colorWhite"
         android:textSize="28sp"
         android:fontFamily="@font/bebasneue_regular"
-        android:drawableStart="@drawable/btn_icon_about"
+        android:drawableStart="@drawable/icon_settings"
         android:paddingStart="12dp"
         android:paddingEnd="12dp"
         app:layout_constraintEnd_toEndOf="parent"
