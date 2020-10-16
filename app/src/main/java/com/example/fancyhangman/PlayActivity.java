@@ -1,20 +1,20 @@
 package com.example.fancyhangman;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ActionBar;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -23,7 +23,7 @@ import java.util.Random;
 public class PlayActivity extends AppCompatActivity {
 
     private static final String TAG = "MACO";
-    private final int MAX_GUESSES = 10;
+    private final int MAX_GUESSES = 9;
     public static final String SCORETEXT_KEY = "SCORETEXT_KEY";
     public static final String WORD_KEY = "WORD_KEY";
     public static final String GUESSES_KEY = "GUESSES_KEY";
@@ -32,6 +32,7 @@ public class PlayActivity extends AppCompatActivity {
     private TextView tvHiddenWord;
     private TextView tvTriesLeft;
     private TextView tvGuessedLetters;
+    private ImageView ivHangman;
 
     private int currentGuess = 0;
 
@@ -39,6 +40,7 @@ public class PlayActivity extends AppCompatActivity {
     private Button btnÄ;
     private Button btnÖ;
 
+    private ImageView[] pictures = new ImageView[9];
     private String[] words;
     private String currentWord;
     private char[] hiddenWord;
@@ -58,6 +60,7 @@ public class PlayActivity extends AppCompatActivity {
         btnÅ = findViewById(R.id.btn_å);
         btnÄ = findViewById(R.id.btn_ä);
         btnÖ = findViewById(R.id.btn_ö);
+        ivHangman = findViewById(R.id.iv_hangman);
 
         String currentLanguage = Locale.getDefault().getDisplayLanguage();
         Log.d(TAG, "onCreate: " + currentLanguage);
@@ -130,6 +133,7 @@ public class PlayActivity extends AppCompatActivity {
         if (guessedLetters.contains(letter)){
             Toast.makeText(this, R.string.already_guessed, Toast.LENGTH_SHORT).show();
             currentGuess++;
+            loadImages(ivHangman, currentGuess);
         } else {
 
             //CHECK IF THE WORD CONTAINS THE LETTER
@@ -145,7 +149,8 @@ public class PlayActivity extends AppCompatActivity {
                 Toast.makeText(this, R.string.letter_not_exist, Toast.LENGTH_SHORT).show();
                 guessedLetters.add(letter);
                 currentGuess++;
-                // TODO update images
+                loadImages(ivHangman, currentGuess);
+
             }
         }
 
@@ -159,7 +164,7 @@ public class PlayActivity extends AppCompatActivity {
             intent.putExtra(GUESSES_KEY, currentGuess);
             startActivity(intent);
             finish();
-        } else if (currentGuess >= 10){
+        } else if (currentGuess >= MAX_GUESSES){
             Intent intent = new Intent(this, EndActivity.class);
             intent.putExtra(WINSTATE_KEY, 2);
             intent.putExtra(SCORETEXT_KEY, getString(R.string.you_lose));
@@ -168,6 +173,15 @@ public class PlayActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+
+    }
+
+    private void loadImages(ImageView view, int i){
+
+        Glide.with(this)
+                .load("https://raw.githubusercontent.com/MarcusHellkvist/Hangman/main/pictures/hangman_" + i + ".png")
+                .override(200, 200)
+                .into(view);
 
     }
 }
