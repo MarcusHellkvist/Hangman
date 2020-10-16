@@ -26,7 +26,7 @@ public class EndActivity extends AppCompatActivity {
 
     private GameLogic game;
 
-    private Button btnPlayAgain;
+    private Button btnPlayAgain, btnExitGame;
 
     private MediaPlayer mediaPlayer;
 
@@ -46,9 +46,11 @@ public class EndActivity extends AppCompatActivity {
         trophy = findViewById(R.id.animation_view_trophy);
         confetti = findViewById(R.id.animation_view_confetti_falling);
         btnPlayAgain = findViewById(R.id.btn_menu_play);
+        btnExitGame = findViewById(R.id.btn_menu_exit);
 
         // SET LISTENERS
         btnPlayAgain.setOnClickListener(playAgain);
+        btnExitGame.setOnClickListener(exitGame);
 
         int winState = game.getWinState();
         int amountOfGuesses = game.getAmountOfGuesses();
@@ -71,6 +73,14 @@ public class EndActivity extends AppCompatActivity {
             Intent intent = new Intent(EndActivity.this, PlayActivity.class);
             startActivity(intent);
             finish();
+        }
+    };
+
+    View.OnClickListener exitGame = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            finish();
+            System.exit(0);
         }
     };
 
