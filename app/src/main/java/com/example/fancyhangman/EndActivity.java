@@ -24,6 +24,8 @@ public class EndActivity extends AppCompatActivity {
     private LottieAnimationView trophy;
     private LottieAnimationView confetti;
 
+    private GameLogic game;
+
     private Button btnPlayAgain;
 
     private MediaPlayer mediaPlayer;
@@ -32,6 +34,8 @@ public class EndActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_end);
+
+        game = GameLogic.getInstance();
 
         mediaPlayer = MediaPlayer.create(this, R.raw.odetojoy);
 
@@ -43,25 +47,22 @@ public class EndActivity extends AppCompatActivity {
         confetti = findViewById(R.id.animation_view_confetti_falling);
         btnPlayAgain = findViewById(R.id.btn_menu_play);
 
-        // GET DATA FROM PLAYACTIVITY
-        Intent intent = getIntent();
-        String mainText = intent.getStringExtra(PlayActivity.SCORETEXT_KEY);
-        int winState = intent.getIntExtra(PlayActivity.WINSTATE_KEY, 0);
-        String wordText = intent.getStringExtra(PlayActivity.WORD_KEY);
-        int guessText = intent.getIntExtra(PlayActivity.GUESSES_KEY, 0);
-
+        // SET LISTENERS
         btnPlayAgain.setOnClickListener(playAgain);
 
+        int winState = game.getWinState();
+        int amountOfGuesses = game.getAmountOfGuesses();
+        String finalWord = game.getFinalWord();
+
         if (winState == 1){
+            tvEndText.setText(R.string.you_win);
             playWinState();
+        } else {
+            tvEndText.setText(R.string.you_lose);
         }
-        
-        // SET TEXT
-        tvEndText.setText(mainText);
-        String wordTextString = getString(R.string.the_word_was) + wordText;
-        tvCorrectWord.setText(wordTextString);
-        String guessTextString = getString(R.string.number_of_guesses) + guessText;
-        tvAmountOfGuesses.setText(guessTextString);
+
+        tvCorrectWord.setText(getString(R.string.the_word_was) + finalWord);
+        tvAmountOfGuesses.setText(getString(R.string.number_of_guesses) + amountOfGuesses);
     }
 
     View.OnClickListener playAgain = new View.OnClickListener() {

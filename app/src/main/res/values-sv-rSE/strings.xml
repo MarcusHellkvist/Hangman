@@ -15,6 +15,9 @@
     <string name="number_of_guesses">Antal gissningar</string>
     <string name="summary">Sammanfattning:</string>
     <string name="play_again">Spela Igen</string>
+    <string name="programmed_and_designed_by_marcus_hellkvist">Programmerad och designad av Marcus Hellkvist</string>
+    <string name="language">Språk</string>
+    <string name="apply">Tillämpa</string>
 
     <string-array name="language_list">
         <item>Engelska</item>
@@ -33,9 +36,6 @@
         <item>BADRUM</item>
         <item>DATOR</item>
     </string-array>
-    <string name="programmed_and_designed_by_marcus_hellkvist">Programmerad och designad av Marcus Hellkvist</string>
-    <string name="language">Språk</string>
-    <string name="apply">Tillämpa</string>
 
 
 </resources>

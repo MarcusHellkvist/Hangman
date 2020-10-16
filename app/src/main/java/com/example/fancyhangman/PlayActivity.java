@@ -29,6 +29,8 @@ public class PlayActivity extends AppCompatActivity {
     public static final String GUESSES_KEY = "GUESSES_KEY";
     public static final String WINSTATE_KEY = "WINSTATE_KEY";
 
+    GameLogic game;
+
     private TextView tvHiddenWord;
     private TextView tvTriesLeft;
     private TextView tvGuessedLetters;
@@ -51,7 +53,9 @@ public class PlayActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        game = GameLogic.getInstance();
 
         // BIND VIEWS
         tvHiddenWord = findViewById(R.id.tv_hidden_word);
@@ -70,7 +74,6 @@ public class PlayActivity extends AppCompatActivity {
             btnÄ.setVisibility(View.INVISIBLE);
             btnÖ.setVisibility(View.INVISIBLE);
         }
-
 
         // FIND, HIDE, AND SHOW A RANDOM WORD
         words = getResources().getStringArray(R.array.words);
@@ -97,7 +100,6 @@ public class PlayActivity extends AppCompatActivity {
         for (int i = 0; i < hiddenWord.length; i++) {
             hiddenWord[i] = '_';
         }
-
     }
 
     private String getRandomWord(String[] sArray){
@@ -157,19 +159,22 @@ public class PlayActivity extends AppCompatActivity {
         updateAllText();
 
         if (checkWin()){
+
             Intent intent = new Intent(this, EndActivity.class);
-            intent.putExtra(WINSTATE_KEY, 1);
-            intent.putExtra(SCORETEXT_KEY, getString(R.string.you_win));
-            intent.putExtra(WORD_KEY, currentWord);
-            intent.putExtra(GUESSES_KEY, currentGuess);
+            game.setWinState(1);
+            game.setFinalWord(currentWord);
+            game.setAmountOfGuesses(currentGuess);
+
             startActivity(intent);
             finish();
+
         } else if (currentGuess >= MAX_GUESSES){
             Intent intent = new Intent(this, EndActivity.class);
-            intent.putExtra(WINSTATE_KEY, 2);
-            intent.putExtra(SCORETEXT_KEY, getString(R.string.you_lose));
-            intent.putExtra(WORD_KEY, currentWord);
-            intent.putExtra(GUESSES_KEY, currentGuess);
+
+            game.setWinState(2);
+            game.setFinalWord(currentWord);
+            game.setAmountOfGuesses(currentGuess);
+
             startActivity(intent);
             finish();
         }
