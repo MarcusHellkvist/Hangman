@@ -13,7 +13,6 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-
     private static final String TAG = "MACO";
     Button btnPlay, btnAbout, btnExit;
 
@@ -33,27 +32,29 @@ public class MainActivity extends AppCompatActivity {
         btnAbout.setOnClickListener(aboutGameListener);
         btnExit.setOnClickListener(exitGameListener);
 
-
     }
 
     View.OnClickListener playGameListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            changeActivity(MainActivity.this, PlayActivity.class);
+            Intent intent = new Intent(MainActivity.this, PlayActivity.class);
+            startActivity(intent);
         }
     };
 
     View.OnClickListener aboutGameListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            changeActivity(MainActivity.this, SettingsActivity.class);
+            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(intent);
         }
     };
 
     View.OnClickListener exitGameListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            //TODO EXIT GAME
+            finish();
+            System.exit(0);
         }
     };
 
@@ -67,16 +68,13 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.ac_play_icon:
-                changeActivity(this, PlayActivity.class);
+                Intent i1 = new Intent(this, PlayActivity.class);
+                startActivity(i1);
                 break;
             case R.id.ac_info_icon:
-                changeActivity(this, SettingsActivity.class);
+                Intent i2 = new Intent(this, SettingsActivity.class);
+                startActivity(i2);
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    private void changeActivity(Context context, Class mClass){
-        Intent intent = new Intent(context, mClass);
-        startActivity(intent);
     }
 }
