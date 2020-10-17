@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,38 +22,39 @@ import java.util.Random;
 public class PlayActivity extends AppCompatActivity {
 
     private static final String TAG = "MACO";
+
+    // SINGLETON CLASS
+    private GameLogic game;
+
+    // VARIABLES
     private final int MAX_GUESSES = 9;
-    public static final String SCORETEXT_KEY = "SCORETEXT_KEY";
-    public static final String WORD_KEY = "WORD_KEY";
-    public static final String GUESSES_KEY = "GUESSES_KEY";
-    public static final String WINSTATE_KEY = "WINSTATE_KEY";
-
-    GameLogic game;
-
-    private TextView tvHiddenWord;
-    private TextView tvTriesLeft;
-    private TextView tvGuessedLetters;
-    private ImageView ivHangman;
-
     private int currentGuess = 0;
-
-    private Button btnÅ;
-    private Button btnÄ;
-    private Button btnÖ;
-
-    private ImageView[] pictures = new ImageView[9];
     private String[] words;
     private String currentWord;
     private char[] hiddenWord;
     private ArrayList<String> guessedLetters = new ArrayList<>();
 
+    // VIEWS
+    private TextView tvHiddenWord;
+    private TextView tvTriesLeft;
+    private TextView tvGuessedLetters;
+    private ImageView ivHangman;
+    private Button btnÅ;
+    private Button btnÄ;
+    private Button btnÖ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
 
+        // ENABLE BACK BUTTON ON ACTIONBAR
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        // GET CURRENT LANGUAGE
+        String currentLanguage = Locale.getDefault().getDisplayLanguage();
+
+        // GET SINGLETON INSTANCE
         game = GameLogic.getInstance();
 
         // BIND VIEWS
@@ -66,14 +66,8 @@ public class PlayActivity extends AppCompatActivity {
         btnÖ = findViewById(R.id.btn_ö);
         ivHangman = findViewById(R.id.iv_hangman);
 
-        String currentLanguage = Locale.getDefault().getDisplayLanguage();
-        Log.d(TAG, "onCreate: " + currentLanguage);
-
-        if (currentLanguage.contentEquals("English")){
-            btnÅ.setVisibility(View.INVISIBLE);
-            btnÄ.setVisibility(View.INVISIBLE);
-            btnÖ.setVisibility(View.INVISIBLE);
-        }
+        // SHOW CORRECT KEYBOARD DEPENDING ON CURRENT LANGUAGE
+        showKeyboard(currentLanguage);
 
         // FIND, HIDE, AND SHOW A RANDOM WORD
         words = getResources().getStringArray(R.array.words);
@@ -84,6 +78,14 @@ public class PlayActivity extends AppCompatActivity {
         // FLUSH LIST OF LETTERS
         guessedLetters.clear();
 
+    }
+
+    private void showKeyboard(String currentLanguage) {
+        if (currentLanguage.contentEquals("English")){
+            btnÅ.setVisibility(View.INVISIBLE);
+            btnÄ.setVisibility(View.INVISIBLE);
+            btnÖ.setVisibility(View.INVISIBLE);
+        }
     }
 
     private void updateAllText() {
@@ -158,8 +160,8 @@ public class PlayActivity extends AppCompatActivity {
 
         updateAllText();
 
+        // CHECK FOR WIN
         if (checkWin()){
-
             Intent intent = new Intent(this, EndActivity.class);
             game.setWinState(1);
             game.setFinalWord(currentWord);
@@ -170,7 +172,6 @@ public class PlayActivity extends AppCompatActivity {
 
         } else if (currentGuess >= MAX_GUESSES){
             Intent intent = new Intent(this, EndActivity.class);
-
             game.setWinState(2);
             game.setFinalWord(currentWord);
             game.setAmountOfGuesses(currentGuess);

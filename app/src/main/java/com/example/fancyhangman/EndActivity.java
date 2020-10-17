@@ -48,7 +48,7 @@ public class EndActivity extends AppCompatActivity {
         btnPlayAgain = findViewById(R.id.btn_menu_play);
         btnExitGame = findViewById(R.id.btn_menu_exit);
 
-        // SET LISTENERS
+        // BUTTON LISTENERS
         btnPlayAgain.setOnClickListener(playAgain);
         btnExitGame.setOnClickListener(exitGame);
 
@@ -101,13 +101,13 @@ public class EndActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.ac_play_icon:
-                Intent intent = new Intent(EndActivity.this, PlayActivity.class);
-                startActivity(intent);
+                Intent i1 = new Intent(EndActivity.this, PlayActivity.class);
+                startActivity(i1);
                 finish();
                 break;
             case R.id.ac_info_icon:
-                Intent intent1 = new Intent(this, SettingsActivity.class);
-                startActivity(intent1);
+                Intent i2 = new Intent(this, SettingsActivity.class);
+                startActivity(i2);
                 finish();
         }
         return super.onOptionsItemSelected(item);
