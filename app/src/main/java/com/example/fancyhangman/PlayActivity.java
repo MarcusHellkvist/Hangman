@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,6 +26,7 @@ public class PlayActivity extends AppCompatActivity {
 
     // SINGLETON CLASS
     private GameLogic game;
+    private SharedPreferences sh;
 
     // VARIABLES
     private final int MAX_GUESSES = 9;
@@ -33,6 +35,7 @@ public class PlayActivity extends AppCompatActivity {
     private String currentWord;
     private char[] hiddenWord;
     private ArrayList<String> guessedLetters = new ArrayList<>();
+    private String theme;
 
     // VIEWS
     private TextView tvHiddenWord;
@@ -52,7 +55,10 @@ public class PlayActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // GET CURRENT LANGUAGE
+        sh = getSharedPreferences(MainActivity.MY_KEY, MODE_PRIVATE);
+
         String currentLanguage = Locale.getDefault().getDisplayLanguage();
+        theme = sh.getString("theme", "Cartoon");
 
         // GET SINGLETON INSTANCE
         game = GameLogic.getInstance();
@@ -137,7 +143,7 @@ public class PlayActivity extends AppCompatActivity {
         if (guessedLetters.contains(letter)){
             Toast.makeText(this, R.string.already_guessed, Toast.LENGTH_SHORT).show();
             currentGuess++;
-            loadImages(ivHangman, currentGuess);
+            loadImages(ivHangman, currentGuess, theme);
         } else {
 
             //CHECK IF THE WORD CONTAINS THE LETTER
@@ -153,7 +159,7 @@ public class PlayActivity extends AppCompatActivity {
                 Toast.makeText(this, R.string.letter_not_exist, Toast.LENGTH_SHORT).show();
                 guessedLetters.add(letter);
                 currentGuess++;
-                loadImages(ivHangman, currentGuess);
+                loadImages(ivHangman, currentGuess, theme);
 
             }
         }
@@ -182,12 +188,21 @@ public class PlayActivity extends AppCompatActivity {
 
     }
 
-    private void loadImages(ImageView view, int i){
+    private void loadImages(ImageView view, int i, String theme){
 
-        Glide.with(this)
-                .load("https://raw.githubusercontent.com/MarcusHellkvist/Hangman/main/pictures/hangman_" + i + ".png")
-                .override(200, 200)
-                .into(view);
+        if (theme.contentEquals("Cartoon") || theme.contentEquals("Tecknad")){
+            Glide.with(this)
+                    .load("https://raw.githubusercontent.com/MarcusHellkvist/Hangman/main/pictures/hangman_" + i + ".png")
+                    .override(200, 200)
+                    .into(view);
+        } else {
+            Glide.with(this)
+                    .load("https://raw.githubusercontent.com/MarcusHellkvist/Hangman/main/pictures/bitman/bitman_" + i + ".png")
+                    .override(200, 200)
+                    .into(view);
+        }
+
+
 
     }
 }

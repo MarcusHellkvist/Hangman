@@ -18,10 +18,17 @@
     <string name="programmed_and_designed_by_marcus_hellkvist">Programmed and designed by Marcus Hellkvist</string>
     <string name="language">Language</string>
     <string name="apply">Apply</string>
+    <string name="theme">Theme</string>
+    <string name="changes">Changes successfully made</string>
 
     <string-array name="language_list">
         <item>English</item>
         <item>Swedish</item>
+    </string-array>
+
+    <string-array name="theme_list">
+        <item>Cartoon</item>
+        <item>8 Bit</item>
     </string-array>
 
     <string-array name="words">

@@ -18,10 +18,17 @@
     <string name="programmed_and_designed_by_marcus_hellkvist">Programmerad och designad av Marcus Hellkvist</string>
     <string name="language">Språk</string>
     <string name="apply">Tillämpa</string>
+    <string name="theme">Tema</string>
+    <string name="changes">Ändringar gjorda</string>
 
     <string-array name="language_list">
         <item>Engelska</item>
         <item>Svenska</item>
+    </string-array>
+
+    <string-array name="theme_list">
+        <item>Tecknad</item>
+        <item>8 Bitar</item>
     </string-array>
 
     <string-array name="words">

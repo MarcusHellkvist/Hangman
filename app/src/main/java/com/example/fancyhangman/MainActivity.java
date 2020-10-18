@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,8 +14,10 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MACO";
-    Button btnPlay, btnAbout, btnExit;
+    public static final String MY_KEY = "MY_PREFS_KEY";
+    private Button btnPlay, btnAbout, btnExit;
 
+    private SharedPreferences sh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
