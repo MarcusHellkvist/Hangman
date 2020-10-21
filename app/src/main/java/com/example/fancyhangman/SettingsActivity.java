@@ -45,11 +45,11 @@ public class SettingsActivity extends AppCompatActivity {
                 editor.putString("theme", theme);
                 editor.apply();
 
-                if (language.contentEquals("Swedish") || language.contentEquals("Svenska")){
+                /*if (language.contentEquals("Swedish") || language.contentEquals("Svenska")){
                     setLocale("sv");
                 } else {
                     setLocale("en");
-                }
+                }*/
 
                 Toast.makeText(SettingsActivity.this, R.string.changes, Toast.LENGTH_SHORT).show();
 

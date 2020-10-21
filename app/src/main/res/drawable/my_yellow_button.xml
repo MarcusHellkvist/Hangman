@@ -2,7 +2,7 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:state_pressed="true"
-        android:drawable="@drawable/yellowbutton_p">
+        android:drawable="@drawable/yellowbutton">
     </item>
     <item android:drawable="@drawable/yellowbutton"/>
 
