@@ -39,9 +39,15 @@ public class SettingsActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = sh.edit();
 
                 String language = spinnerLanguage.getSelectedItem().toString();
+
+                if (language.contentEquals("Swedish") || language.contentEquals("Svenska")){
+                    editor.putString("language", "sv");
+                } else {
+                    editor.putString("language", "en");
+                }
+
                 String theme = spinnerTheme.getSelectedItem().toString();
 
-                editor.putString("language", language);
                 editor.putString("theme", theme);
                 editor.apply();
 
@@ -52,6 +58,7 @@ public class SettingsActivity extends AppCompatActivity {
                 }*/
 
                 Toast.makeText(SettingsActivity.this, R.string.changes, Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(SettingsActivity.this, MainActivity.class));
 
             }
         });
