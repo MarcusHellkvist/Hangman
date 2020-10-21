@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate: " + lang);
 
         loadLocale();
+        setContentView(R.layout.activity_main); // this cant be a good solution!
 
         //BIND VIEWS
         btnPlay = findViewById(R.id.btn_menu_play);
