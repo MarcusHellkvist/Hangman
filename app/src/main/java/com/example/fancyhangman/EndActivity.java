@@ -112,4 +112,10 @@ public class EndActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    protected void onDestroy() {
+        // TODO stop music
+        super.onDestroy();
+    }
 }

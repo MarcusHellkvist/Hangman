@@ -8,6 +8,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -37,16 +38,18 @@ public class SettingsActivity extends AppCompatActivity {
                 SharedPreferences sh = getSharedPreferences(MainActivity.MY_KEY, MODE_PRIVATE);
                 SharedPreferences.Editor editor = sh.edit();
 
+                String language = spinnerLanguage.getSelectedItem().toString();
                 String theme = spinnerTheme.getSelectedItem().toString();
+
+                editor.putString("language", language);
                 editor.putString("theme", theme);
                 editor.apply();
 
-                /*String language = spinnerLanguage.getSelectedItem().toString();
                 if (language.contentEquals("Swedish") || language.contentEquals("Svenska")){
                     setLocale("sv");
                 } else {
                     setLocale("en");
-                }*/
+                }
 
                 Toast.makeText(SettingsActivity.this, R.string.changes, Toast.LENGTH_SHORT).show();
 
@@ -54,16 +57,14 @@ public class SettingsActivity extends AppCompatActivity {
         });
     }
 
-    private void setLocale(String language){
-
+    public void setLocale(String language){
         Locale myLocale = new Locale(language);
         Resources res = getResources();
         DisplayMetrics dm = res.getDisplayMetrics();
         Configuration conf = res.getConfiguration();
         conf.locale = myLocale;
         res.updateConfiguration(conf, dm);
-        Intent refresh = new Intent(SettingsActivity.this, SettingsActivity.class);
-        finish();
-        startActivity(refresh);
+        startActivity(new Intent(SettingsActivity.this, MainActivity.class));
+
     }
 }

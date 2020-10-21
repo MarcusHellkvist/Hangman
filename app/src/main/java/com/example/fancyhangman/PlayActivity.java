@@ -57,7 +57,8 @@ public class PlayActivity extends AppCompatActivity {
         // GET CURRENT LANGUAGE
         sh = getSharedPreferences(MainActivity.MY_KEY, MODE_PRIVATE);
 
-        String currentLanguage = Locale.getDefault().getDisplayLanguage();
+        //String currentLanguage = Locale.getDefault().getDisplayLanguage();
+        String currentLanguage = sh.getString("language", "English");
         theme = sh.getString("theme", "Cartoon");
 
         // GET SINGLETON INSTANCE

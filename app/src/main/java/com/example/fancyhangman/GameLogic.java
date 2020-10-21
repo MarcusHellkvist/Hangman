@@ -1,5 +1,6 @@
 package com.example.fancyhangman;
 
+
 public class GameLogic {
     private static final GameLogic ourInstance = new GameLogic();
 
@@ -37,4 +38,7 @@ public class GameLogic {
     public void setAmountOfGuesses(int amountOfGuesses) {
         this.amountOfGuesses = amountOfGuesses;
     }
+
+
+
 }
