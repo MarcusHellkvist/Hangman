@@ -39,6 +39,8 @@ public class EndActivity extends AppCompatActivity {
 
         mediaPlayer = MediaPlayer.create(this, R.raw.odetojoy);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         // VIEW BINDING
         tvEndText = findViewById(R.id.tv_end_text);
         tvCorrectWord = findViewById(R.id.tv_correct_word);
