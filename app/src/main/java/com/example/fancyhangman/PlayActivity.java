@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -58,7 +59,7 @@ public class PlayActivity extends AppCompatActivity {
         sh = getSharedPreferences(MainActivity.MY_KEY, MODE_PRIVATE);
 
         //String currentLanguage = Locale.getDefault().getDisplayLanguage();
-        String currentLanguage = sh.getString("language", "English");
+        String currentLanguage = sh.getString("language", "");
         theme = sh.getString("theme", "Cartoon");
 
         // GET SINGLETON INSTANCE
@@ -88,7 +89,7 @@ public class PlayActivity extends AppCompatActivity {
     }
 
     private void showKeyboard(String currentLanguage) {
-        if (currentLanguage.contentEquals("English")){
+        if (currentLanguage.contentEquals("en")){
             btnÅ.setVisibility(View.INVISIBLE);
             btnÄ.setVisibility(View.INVISIBLE);
             btnÖ.setVisibility(View.INVISIBLE);
@@ -190,6 +191,8 @@ public class PlayActivity extends AppCompatActivity {
     }
 
     private void loadImages(ImageView view, int i, String theme){
+
+        Log.d(TAG, "loadImages: " + theme);
 
         if (theme.contentEquals("Cartoon") || theme.contentEquals("Tecknad")){
             Glide.with(this)
