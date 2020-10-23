@@ -57,7 +57,6 @@ public class PlayActivity extends AppCompatActivity {
         // GET CURRENT LANGUAGE
         sh = getSharedPreferences(MainActivity.MY_KEY, MODE_PRIVATE);
 
-        //String currentLanguage = Locale.getDefault().getDisplayLanguage();
         String currentLanguage = sh.getString("language", "");
         theme = sh.getString("theme", "Cartoon");
 
@@ -191,8 +190,6 @@ public class PlayActivity extends AppCompatActivity {
 
     private void loadImages(ImageView view, int i, String theme){
 
-        Log.d(TAG, "loadImages: " + theme);
-
         if (theme.contentEquals("Cartoon") || theme.contentEquals("Tecknad")){
             Glide.with(this)
                     .load("https://raw.githubusercontent.com/MarcusHellkvist/Hangman/main/pictures/hangman_" + i + ".png")
@@ -204,8 +201,5 @@ public class PlayActivity extends AppCompatActivity {
                     .override(200, 200)
                     .into(view);
         }
-
-
-
     }
 }

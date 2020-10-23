@@ -5,11 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.os.LocaleList;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,10 +32,8 @@ public class MainActivity extends AppCompatActivity {
         String lang = sh.getString("language", "");
         String theme = sh.getString("theme", "cartoon");
 
-        Log.d(TAG, "onCreate: " + lang);
-
         loadLocale();
-        setContentView(R.layout.activity_main); // this cant be a good solution!
+        setContentView(R.layout.activity_main); // this can't be a good solution!
 
         //BIND VIEWS
         btnPlay = findViewById(R.id.btn_menu_play);

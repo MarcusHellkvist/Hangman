@@ -51,27 +51,10 @@ public class SettingsActivity extends AppCompatActivity {
                 editor.putString("theme", theme);
                 editor.apply();
 
-                /*if (language.contentEquals("Swedish") || language.contentEquals("Svenska")){
-                    setLocale("sv");
-                } else {
-                    setLocale("en");
-                }*/
-
                 Toast.makeText(SettingsActivity.this, R.string.changes, Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(SettingsActivity.this, MainActivity.class));
 
             }
         });
-    }
-
-    public void setLocale(String language){
-        Locale myLocale = new Locale(language);
-        Resources res = getResources();
-        DisplayMetrics dm = res.getDisplayMetrics();
-        Configuration conf = res.getConfiguration();
-        conf.locale = myLocale;
-        res.updateConfiguration(conf, dm);
-        startActivity(new Intent(SettingsActivity.this, MainActivity.class));
-
     }
 }
