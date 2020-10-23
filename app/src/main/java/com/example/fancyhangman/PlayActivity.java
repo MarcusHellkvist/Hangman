@@ -18,7 +18,6 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Random;
 
 public class PlayActivity extends AppCompatActivity {

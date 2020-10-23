@@ -115,7 +115,7 @@ public class EndActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        // TODO stop music
+        mediaPlayer.stop();
         super.onDestroy();
     }
 }
